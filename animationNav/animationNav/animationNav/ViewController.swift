@@ -133,18 +133,40 @@ class ViewController: UIViewController, UITableViewDelegate{
 //        view.addSubview(pic4)
 //        view.addSubview(pic5)
 //        view.addSubview(pic6)
-        view.addSubview(label1)
-        view.addSubview(label2)
+        openview.addSubview(label1)
+        
+        openview.addSubview(label2)
+        label2.isHidden = true
         view.addSubview(tableView)
         view.addSubview(openview)
 //        openview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300)
-        openview.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        openview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        openview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        openview.heightAnchor.constraint(equalToConstant: 150).isActive = true
-        
-        openButton.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40).isActive = true
-        openButton.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: -10).isActive = true
+        NSLayoutConstraint.activate([
+         
+        openview.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+        openview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+        openview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+        openview.heightAnchor.constraint(equalToConstant: 150),
+//        view.addConstraint(NSLayoutConstraint(item: openview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 200)
+//)
+            tableView.topAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            openButton.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40),
+            openButton.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: -10),
+            stackH.bottomAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0),
+            stackH.leadingAnchor.constraint(equalTo: openview.leadingAnchor, constant: 0),
+            stackH.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: 0),
+            stackH.heightAnchor.constraint(equalToConstant: 44),
+            stackH.widthAnchor.constraint(equalTo: view.widthAnchor),
+            label1.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40),
+            label1.centerXAnchor.constraint(equalTo: openview.centerXAnchor),
+            label2.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40),
+            label2.centerXAnchor.constraint(equalTo: openview.centerXAnchor)
+        ])
+
+//        openButton.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40).isActive = true
+//        openButton.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: -10).isActive = true
         openButton.addTarget(self, action: #selector(openFriends), for: .touchUpInside)
 
 //        stackV.topAnchor.constraint(equalTo: openview.topAnchor, constant: 0).isActive = true
@@ -157,11 +179,11 @@ class ViewController: UIViewController, UITableViewDelegate{
 //        stackV.addSubview(label2)
 //        stackV.addSubview(stackH)
 
-        stackH.bottomAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0).isActive = true
-        stackH.leadingAnchor.constraint(equalTo: openview.leadingAnchor, constant: 0).isActive = true
-        stackH.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: 0).isActive = true
-        stackH.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        stackH.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+//        stackH.bottomAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0).isActive = true
+//        stackH.leadingAnchor.constraint(equalTo: openview.leadingAnchor, constant: 0).isActive = true
+//        stackH.trailingAnchor.constraint(equalTo: openview.trailingAnchor, constant: 0).isActive = true
+//        stackH.heightAnchor.constraint(equalToConstant: 44).isActive = true
+//        stackH.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
 
         stackH.addArrangedSubview(pic1)
         stackH.addArrangedSubview(pic2)
@@ -169,13 +191,13 @@ class ViewController: UIViewController, UITableViewDelegate{
         stackH.addArrangedSubview(pic4)
         stackH.addArrangedSubview(pic5)
         stackH.addArrangedSubview(pic6)
-
-
-        label1.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40).isActive = true
-        label1.centerXAnchor.constraint(equalTo: openview.centerXAnchor).isActive = true
-
-        label2.topAnchor.constraint(equalTo: openview.topAnchor, constant: 90).isActive = true
-        label2.centerXAnchor.constraint(equalTo: openview.centerXAnchor).isActive = true
+        stackH.isHidden = true
+//
+//        label1.topAnchor.constraint(equalTo: openview.topAnchor, constant: 40).isActive = true
+//        label1.centerXAnchor.constraint(equalTo: openview.centerXAnchor).isActive = true
+//
+//        label2.topAnchor.constraint(equalTo: openview.topAnchor, constant: 90).isActive = true
+//        label2.centerXAnchor.constraint(equalTo: openview.centerXAnchor).isActive = true
 
         pic1.widthAnchor.constraint(equalToConstant: 60).isActive = true
         pic2.widthAnchor.constraint(equalToConstant: 60).isActive = true
@@ -191,10 +213,10 @@ class ViewController: UIViewController, UITableViewDelegate{
         pic5.heightAnchor.constraint(equalToConstant: 60).isActive = true
         pic6.heightAnchor.constraint(equalToConstant: 60).isActive = true
 
-        tableView.topAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+//        tableView.topAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0).isActive = true
+//        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+//        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+//        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
 
         let tapGestureRecognizer1 = UITapGestureRecognizer(target: self, action: #selector(hello1))
         pic1.isUserInteractionEnabled = true
@@ -248,12 +270,13 @@ class ViewController: UIViewController, UITableViewDelegate{
     
     @objc func openFriends() {
         if openOrClose == false {
-            UIView.animate(withDuration: 3.0, delay: 0.1, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: .curveEaseIn, animations: {self.openButton.transform = CGAffineTransform(rotationAngle: .pi*3/4);self.openview.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500);},
+            UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: .curveEaseInOut, animations: { [self] in self.openButton.transform = CGAffineTransform(rotationAngle: .pi*3/4);
+                            NSLayoutConstraint.activate([openview.heightAnchor.constraint(equalToConstant: 400)]);self.view.layoutIfNeeded();self.stackH.isHidden = false;label1.isHidden = true; label2.isHidden = false},
                            completion: nil)
             openOrClose = true
             print("hola")
         } else {
-            UIView.animate(withDuration: 3.0, delay: 0.1, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {self.openButton.transform = .identity;self.label2.isHidden = true; self.label1.isHidden = false;self.openview.heightAnchor.constraint(equalToConstant: 120).isActive = true}, completion: nil)
+            UIView.animate(withDuration: 3.0, delay: 0.1, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in self.openButton.transform = .identity;self.label2.isHidden = true; self.label1.isHidden = false;NSLayoutConstraint.activate([openview.heightAnchor.constraint(equalToConstant: 200)]);self.view.layoutIfNeeded();self.stackH.isHidden = true }, completion: nil)
             print("hello")
             openOrClose = false
         }
