@@ -14,7 +14,8 @@ class ViewController: UIViewController, UITableViewDelegate{
     var friendsList:[String] = []
     
     var openOrClose = false
-    
+    var openviewHeight : NSLayoutConstraint?
+  
     let tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .white
@@ -140,12 +141,15 @@ class ViewController: UIViewController, UITableViewDelegate{
         view.addSubview(tableView)
         view.addSubview(openview)
 //        openview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 300)
+        openviewHeight = openview.heightAnchor.constraint(equalToConstant: 120)
+        openviewHeight?.isActive = true
         NSLayoutConstraint.activate([
          
         openview.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
         openview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
         openview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-        openview.heightAnchor.constraint(equalToConstant: 150),
+//        openview.heightAnchor.constraint(equalToConstant: 120),
+        
 //        view.addConstraint(NSLayoutConstraint(item: openview, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 200)
 //)
             tableView.topAnchor.constraint(equalTo: openview.bottomAnchor, constant: 0),
@@ -270,13 +274,26 @@ class ViewController: UIViewController, UITableViewDelegate{
     
     @objc func openFriends() {
         if openOrClose == false {
-            UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: .curveEaseInOut, animations: { [self] in self.openButton.transform = CGAffineTransform(rotationAngle: .pi*3/4);
-                            NSLayoutConstraint.activate([openview.heightAnchor.constraint(equalToConstant: 400)]);self.view.layoutIfNeeded();self.stackH.isHidden = false;label1.isHidden = true; label2.isHidden = false},
+            UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 2, options: .curveEaseInOut, animations: { self.openButton.transform = CGAffineTransform(rotationAngle: .pi*3/4)
+//                            NSLayoutConstraint.activate([self.openview.heightAnchor.constraint(equalToConstant:200)])
+                            self.openviewHeight?.constant = 200
+//                            self.openviewHeight?.isActive = true
+                            self.view.layoutIfNeeded()
+                            self.stackH.isHidden = false
+                            self.label1.isHidden = true
+                            self.label2.isHidden = false},
                            completion: nil)
             openOrClose = true
             print("hola")
         } else {
-            UIView.animate(withDuration: 3.0, delay: 0.1, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { [self] in self.openButton.transform = .identity;self.label2.isHidden = true; self.label1.isHidden = false;NSLayoutConstraint.activate([openview.heightAnchor.constraint(equalToConstant: 200)]);self.view.layoutIfNeeded();self.stackH.isHidden = true }, completion: nil)
+            UIView.animate(withDuration: 3.0, delay: 0.0, usingSpringWithDamping: 0.1, initialSpringVelocity: 0, options: .curveEaseInOut, animations: { self.openButton.transform = .identity
+                            self.label2.isHidden = true
+                            self.label1.isHidden = false
+//                            NSLayoutConstraint.activate([self.openview.heightAnchor.constraint(equalToConstant: 120)])
+                            self.openviewHeight?.constant = 120
+
+                            self.view.layoutIfNeeded()
+                            self.stackH.isHidden = true }, completion: nil)
             print("hello")
             openOrClose = false
         }
